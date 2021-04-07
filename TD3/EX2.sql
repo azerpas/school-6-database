@@ -1,4 +1,5 @@
 -- 1.	Obtenir la liste des noms, prénom et date de naissance de tous les élèves.
+SELECT NOM, PRENOM, DATE_NAISSANCE FROM ELEVES;
 -- 2.	Obtenir la liste des spécialités des professeurs avec doublons puis sans doublons.
 -- 3.	Obtenir le nom et prénom des élèves pesant entre 40 et 60 kilos et inscrits en 1ère année ou des élèves inscrits en 2ème année.
 -- 4.	Obtenir le nom des élèves dont le poids est compris entre 60 et 80 kilos.
