@@ -17,8 +17,9 @@ SELECT NOM, ISNULL(SPECIALITE, "****") FROM PROFESSEURS;
 -- 8.	Obtenir les paires de noms de professeurs qui ont la même spécialité.
 -- SELECT P1.NOM FROM PROFESSEURS P1 WHERE (SELECT SPECIALITE FROM PROFESSEURS) = P1.SPECIALITE;
 -- 9.	Afficher l’âge moyen des élèves. Cet âge moyen sera exprimé en année.
-SELECT AVG(AGE) FROM ELEVES;
+SELECT AVG(DATEDIFF(NOW(),DATE_NAISSANCE)/365) FROM ELEVES;
 -- 10.	Obtenir pour chaque élève de 1ère année son nom et sa moyenne.
+
 -- 11.	Obtenir la moyenne des points de chaque élève de 1ère année dont le total des points est supérieur à 40.
 -- 12.	Obtenir le maximum parmi les totaux de chaque élève.
 -- 13.	Quels sont les élèves de 1ère année dont la moyenne est supérieure à la moyenne de la 1ère année ?
