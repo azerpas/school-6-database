@@ -19,9 +19,13 @@ SELECT NOM, ISNULL(SPECIALITE, "****") FROM PROFESSEURS;
 -- 9.	Afficher l’âge moyen des élèves. Cet âge moyen sera exprimé en année.
 SELECT AVG(DATEDIFF(NOW(),DATE_NAISSANCE)/365) FROM ELEVES;
 -- 10.	Obtenir pour chaque élève de 1ère année son nom et sa moyenne.
+SELECT NOM , AVG(POINTS) FROM ELEVES e , RESULTATS r WHERE e.NUM_ELEVE=r.NUM_ELEVE AND ANNEE=1 GROUP BY NOM;
 
 -- 11.	Obtenir la moyenne des points de chaque élève de 1ère année dont le total des points est supérieur à 40.
+SELECT NOM , AVG(POINTS) FROM ELEVES e , RESULTATS r WHERE e.NUM_ELEVE=r.NUM_ELEVE AND ANNEE=1 GROUP BY NOM HAVING SUM(POINTS) > 40;
+
 -- 12.	Obtenir le maximum parmi les totaux de chaque élève.
+SELECT MAX(SUM(POINTS)) FROM ELEVES e , RESULTATS r WHERE e.NUM_ELEVE=r.NUM_ELEVE  ;
 -- 13.	Quels sont les élèves de 1ère année dont la moyenne est supérieure à la moyenne de la 1ère année ?
 -- 14.	Obtenir le nom et le poids des élèves de 1ère année plus lourds que n’importe quel élève de 2ème année.
 -- 15.	Obtenir le nom, le poids et l’année des élèves dont le poids est supérieur au poids moyen des élèves étant dans la même année d’études.
