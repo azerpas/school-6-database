@@ -1,1 +1,4 @@
+*.pdf
+*.pages
 /TP1/.idea/
+.DS_Store
