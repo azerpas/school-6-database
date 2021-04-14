@@ -41,3 +41,21 @@ grant select on Eleves To User1;
 create user 'user1'@'localhost' identified by '123';
 GRANT SELECT ON Eleves TO user1@localhost;
 
+-- 7.
+-- Oui
+
+-- 8.
+-- Que faut-il faire pour que user1 puisse consulter toutes les tables de la base de données ecole ?
+GRANT SELECT ON * TO 'user1'@'localhost';
+
+-- 9.
+-- Le propriétaire de la base de données ecole est root. Il décide d’insérer un nouvel élève
+-- DUPONT Fantome né 12 avril 2001, de poids 60 kgs, de sexe masculin, qui est en 1ere année
+-- et qui vient de Villejuif 94800. Insérer ce nouvel élève et faire le nécessaire pour que User1 puisse le voir.
+INSERT INTO Eleves VALUES (13, 'DUPONT', 'Fantome', '2001-04-12', 60, 1, 'm', 94800, 'VILLEJUIF');
+
+-- 10.
+GRANT INSERT, DELETE, UPDATE ON Eleves_ValDeMarne TO 'user1'@'localhost';
+INSERT INTO Eleves_ValDeMarne VALUES (14, 'DUPONT', 'Jean', '2002-04-12', 80, 1, 'm', 94800, 'VILLEJUIF');
+UPDATE Eleves_ValDeMarne SET Poids = 72 WHERE NUM_ELEVE = 14;
+DELETE FROM Eleves_ValDeMarne WHERE NUM_ELEVE = 14;
