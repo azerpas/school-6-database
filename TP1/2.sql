@@ -36,3 +36,8 @@ SELECT V.Nom, Prenom FROM VMoyennes V JOIN Activites_Pratiquees AP ON V.Num_Elev
 -- 6.
 CREATE USER User1 IDENTIFIED BY '123';
 grant select on Eleves To User1;
+
+-- Correction:
+create user 'user1'@'localhost' identified by '123';
+GRANT SELECT ON Eleves TO user1@localhost;
+
