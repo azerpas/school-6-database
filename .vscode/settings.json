@@ -1,0 +1,10 @@
+{
+    "java.project.referencedLibraries": [
+        "/Users/azerpas/java/junit-platform-console-standalone-1.7.0.jar",
+        "/Users/azerpas/java/mysql-connector-java-8.0.24.jar",
+        "/Users/azerpas/java/mysql-connector-java.jar"
+    ],
+    "java.project.sourcePaths": [
+        "TP2"
+    ]
+}

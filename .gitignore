@@ -2,3 +2,6 @@
 *.pages
 /TP1/.idea/
 .DS_Store
+TP2/Vars.java
+*.class
+*.jar
