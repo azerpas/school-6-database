@@ -1,0 +1,27 @@
+DELIMITER //
+CREATE TRIGGER checking_update
+	BEFORE UPDATE ON ecole.Agglomerations
+    FOR EACH ROW
+    BEGIN
+		IF BINARY NEW.Ville <> BINARY UPPER(NEW.Ville)
+        THEN
+			SIGNAL SQLSTATE '45000'
+				SET MESSAGE_TEXT = 'Ville must in UPPERCASE';
+		END IF;
+    END//
+
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER checking_insert
+	BEFORE INSERT ON ecole.Agglomerations
+	FOR EACH ROW
+    BEGIN
+		IF BINARY NEW.Ville <> BINARY UPPER(NEW.Ville)
+        THEN
+			SIGNAL SQLSTATE '45000'
+				SET MESSAGE_TEXT = 'Ville must in UPPERCASE';
+		END IF;
+    END//
+
+DELIMITER ;

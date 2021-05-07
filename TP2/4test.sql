@@ -1,0 +1,1 @@
+INSERT INTO ecole.Agglomerations VALUES (91600, 'savigny-sur-orge', 'GRANDE-VILLE');
