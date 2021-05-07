@@ -55,4 +55,14 @@ public class DataAccess {
         }
         return list;
     }
+
+    public void updateCours(CoursDAO cDao){
+        try {
+            Statement st = this.connection.createStatement();
+            st.executeUpdate("UPDATE COURS SET NOM = '"+cDao.getNom()+"', NBHEURES = "+cDao.getNbheures()+" WHERE NUM_COURS = "+cDao.getNum_cours()+";");
+            System.out.println("Updated database for id "+cDao.getNum_cours());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
