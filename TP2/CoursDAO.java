@@ -4,6 +4,12 @@ public class CoursDAO {
     private int nbheures;
     private int annee;
 
+    public CoursDAO(int num_cours, String nom, int nbheures, int annee) {
+        this.num_cours = num_cours;
+        this.nom = nom;
+        this.nbheures = nbheures;
+        this.annee = annee;
+    }
 
     public int getNum_cours() {
         return this.num_cours;

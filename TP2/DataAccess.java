@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.Class;
 
@@ -37,21 +38,21 @@ public class DataAccess {
     }
 
     public List<CoursDAO> getCours(){
+        List<CoursDAO> list = new ArrayList<CoursDAO>();
         try {
             Statement st = this.connection.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM COURS"); 
-            // Extract data from result set
+            ResultSet rs = st.executeQuery("SELECT * FROM COURS");
             while (rs.next()) {
-                // Retrieve by column name
-                System.out.print("ID: " + rs.getInt("id"));
-                System.out.print(", Age: " + rs.getInt("age"));
-                System.out.print(", First: " + rs.getString("first"));
-                System.out.println(", Last: " + rs.getString("last"));
+                System.out.print("ID: " + rs.getInt("NUM_COURS"));
+                System.out.print(", Heures: " + rs.getInt("NBHEURES"));
+                System.out.print(", Annee: " + rs.getInt("ANNEE"));
+                System.out.println(", Nom: " + rs.getString("NOM"));
+                CoursDAO c = new CoursDAO(rs.getInt("NUM_COURS"), rs.getString("NOM"), rs.getInt("NBHEURES"), rs.getInt("ANNEE"));
+                list.add(c);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
 }
