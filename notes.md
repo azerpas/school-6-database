@@ -47,17 +47,23 @@ SSI pour l'instance R, on a tuples T1, T2:
 Plus petit ensemble de DF permettant d'obtenir la succession d'axiomes d'inférence
 ![exemple-couverture-min](https://user-images.githubusercontent.com/19282069/119254049-7072a100-bbb4-11eb-8d9b-9ebbb0272593.png)
 ### Formes Normales
-#### 1FN
+#### **1FN**
 Attributs atomiques (non-composés et mono-valués)
 `PERSONNE (NOM, PRENOM, ADRESSE)`   
-**Mise en 1FN :**  
+*Mise en 1FN :*  
 `PERSONNE (NOM, PRENOM, N°RUE, RUE, CODEPOSTAL, VILLE)`
-#### 2FN
+#### **2FN**
 Requis:
 - Être en 1FN
 - tout attribut non-primaire dépend de la totalité de la clé
 - Exemple: ![\begin{align*}R(\underline{A,B},C,D)\end{align*}](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Balign%2A%7D%0AR%28%5Cunderline%7BA%2CB%7D%2CC%2CD%29%0A%5Cend%7Balign%2A%7D%0A) en 1FN.         
 ![\begin{align*}A \rightarrow C \Rightarrow R\end{align*}](https://render.githubusercontent.com/render/math?math=%5Cdisplaystyle+%5Cbegin%7Balign%2A%7D%0AA+%5Crightarrow+C+%5CRightarrow+R%0A%5Cend%7Balign%2A%7D%0A) n'est pas en 2FN, on devrait avoir `C` dépend de `A,B`
+- Solution: on décompose une relation en sous-relations ![exemple-2FN-sol](https://user-images.githubusercontent.com/19282069/119254380-399d8a80-bbb6-11eb-8f80-f7149422037c.png)
+#### **3FN**
+Requis:
+- Être en 2FN
+- un attribut non-clé ne dépend pas d'un attribut non-clé
+- Exemple: ![exemple-3FN](https://user-images.githubusercontent.com/19282069/119254446-a87ae380-bbb6-11eb-8016-277c04dde157.png)
 ## Partie III : Concepts avancés de BDD 
 
 ## Partie IV : Interopérabilité des BDD et apps
