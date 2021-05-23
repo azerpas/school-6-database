@@ -64,6 +64,10 @@ Requis:
 - Exemple: ![exemple-3FN](https://user-images.githubusercontent.com/19282069/119254446-a87ae380-bbb6-11eb-8016-277c04dde157.png)
 # Partie III : Concepts avancés de BDD 
 ## Vues
-
+## Droits
+## Transactions
+## Procédures stockées
+## Déclencheurs
 # Partie IV : Interopérabilité des BDD et apps
-
+## JDBC
+## API
