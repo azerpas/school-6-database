@@ -64,7 +64,45 @@ Requis:
 - Exemple: ![exemple-3FN](https://user-images.githubusercontent.com/19282069/119254446-a87ae380-bbb6-11eb-8016-277c04dde157.png)
 # Partie III : Concepts avancés de BDD 
 ## Vues
+### Vues virtuelles
+Relations de la vue **non-stockées**, seulement définitions.    
+➡️ SGBD traduit requêtes vers BDD conceptuelle
+### Vues matérialisées
+Relations de la vue **stockées**, save le résultat pour meilleures performances.
+```sql
+CREATE MATERIALIZED VIEW ma_vue
+``` 
+### Héritage
+```sql
+CREATE VIEW tous AS
+SELECT e.nom as Employe,
+d.nom as Departement
+FROM Employes e, Departement d WHERE e.departement = d.id;
+
+CREATE VIEW les_dupont AS SELECT *
+FROM tous
+WHERE Employe = 'Dupont';
+```
+### Commandes additionnelles
+```sql
+DROP VIEW les_dupont CASCADE;
+
+RENAME tous TO all;
+```
 ## Droits
+```sql
+GRANT
+{SELECT | INSERT | UPDATE | DELETE | RULE | REFERENCES | TRIGGER |ALL [PRIVILEGES]}
+    ON [TABLE] ma_table [,...]
+    TO {user | GROUP name | PUBLIC} [,...] [WITH GRANT OPTION]
+```
+```sql
+GRANT {
+{CREATE | TEMPORARY | TEMP } [,...]
+| ALL [PRIVILEGES]}
+    ON DATABASE ma_base [,...]
+    TO {user | GROUP name | PUBLIC } [,...] [WITH GRANT OPTION]
+```
 ## Transactions
 ## Procédures stockées
 ## Déclencheurs
