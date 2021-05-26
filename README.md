@@ -207,13 +207,35 @@ Statement stmt = conn.createStatement();
 ```
 ### Interfaces
 #### `Statement`
-- `SELECT`: `executeQuery()`
+- `SELECT`: `executeQuery()` -> `ResultSet` entity
 - `INSERT | UPDATE | DELETE`: `executeUpdate()`
+- `close()`
 #### `ResultSet`
-- `next()` & `get()` methods
+- `next()` & `previous()` & `get()` & `getX()` methods
 #### `PreparedStatement`
 Requête compilée 
 - `set()` & `clearParameters()` & `execute()` methods
 #### `CallableStatement`
 Procédures stockées dans le SGBD
 - `set()` & `get()` & `registerOutParameter()` & `execute()`
+### Exemple 
+```java
+import java.sql.*;
+Class.forName("oracle.jdbc.driver.OracleDriver");
+Connection conn = DriverManager.getConnection("jdbc:oracle:tin:@mars:1521:oracletab", "jean", "password");
+Statement stmt = conn.createStatement();
+ResultSet set = stmt.executeQuery("select ename from emp");
+while(set.next()){
+    System.out.println(set.getString());
+}
+set.close();
+stmt.close();
+conn.close();
+```
+### Transactions
+- Enlever autocommit: 
+```java
+conn.setAutoCommit(false);
+conn.commit();
+conn.rollback();
+```
