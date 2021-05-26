@@ -90,6 +90,7 @@ DROP VIEW les_dupont CASCADE;
 RENAME tous TO all;
 ```
 ## Droits
+### Grant
 ```sql
 GRANT
 {SELECT | INSERT | UPDATE | DELETE | RULE | REFERENCES | TRIGGER |ALL [PRIVILEGES]}
@@ -103,9 +104,116 @@ GRANT {
     ON DATABASE ma_base [,...]
     TO {user | GROUP name | PUBLIC } [,...] [WITH GRANT OPTION]
 ```
+### Grant: Exemple
+```sql
+GRANT INSERT, UPDATE (nom, adresse)
+ON TABLE client TO Alice;
+
+CREATE VIEW personne AS SELECT nom, adresse FROM client;
+
+GRANT SELECT ON personne TO Bob;
+```
+### Revoke
+```sql
+REVOKE INSERT ON films FROM PUBLIC;
+
+REVOKE ALL PRIVILEGES ON genres FROM Bob;
+
+REVOKE Admins FROM Alice;
+```
 ## Transactions
+### Validation
+#### Explicite
+`COMMIT`
+#### Implicite
+- Commande déconnexion
+- Mise à jour du schéma
+- Grant / Revoke
+- `autocommit on`
+### Annulation
+#### Explicite
+`ROLLBACK`
+#### Implicite
+- Déconnexion anormale
 ## Procédures stockées
+### PL/SQL
+Langage interface procédurale SGBD Oracle qui permet traitement algorithmique
+- Structures itératives: `WHILE`, `FOR`
+- Structures conditionnelles `IF`, `ELSE`
+- Variables
+- Branchements
+- Exceptions
+### Bloc
+```sql
+DECLARE
+# Constantes, variables
+BEGIN
+# Commandes
+END
+```
+### Exemple
+```sql 
+CREATE FUNCTION double (integer) RETURNS integer
+AS
+'BEGIN
+RETURN 2*$1;
+END; '
+```
 ## Déclencheurs
+- Maintenance des tables facilitée
+- MAJ automatique
+- Sécurité renforcée
+- Historique
+### Types
+- Trigger table (Statement)
+- Trigger ligne (Row): OLD-NEW available
+### Exemple
+```sql
+CREATE FUNCTION gen_cle_client () RETURNS OPAQUE AS 'DECLARE
+nocli integer;
+BEGIN
+SELECT nocli INTO max(no_client) FROM client; IF nocli ISNULL THEN
+nocli:=0;
+END IF;
+NEW.no_client:=nocli+1; RETURN NEW;
+END; '
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER trig_bef_ins_client BEFORE INSERT
+ON client
+FOR EACH ROW
+EXECUTE PROCEDURE gen_cle_client();
+```
+## Misc
+- Panne
+- Concurrence d'accès
 # Partie IV : Interopérabilité des BDD et apps
 ## JDBC
+### Driver
+- Permet d'intéragir avec SGBD
+- Driver dépend du SGBD
 ## API
+```java
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+String url = "jdbc:odbc:fred";
+DriverManager.getConnection(url,"userID","passwd ");
+```
+### Types de statements
+- **statement**: requêtes simples
+- **prepared statement**: requêtes précompilées
+- **callable statement**: procédures stockées       
+```java
+Statement stmt = conn.createStatement();
+```
+### Interfaces
+#### `Statement`
+- `SELECT`: `executeQuery()`
+- `INSERT | UPDATE | DELETE`: `executeUpdate()`
+#### `ResultSet`
+- `next()` & `get()` methods
+#### `PreparedStatement`
+Requête compilée 
+- `set()` & `clearParameters()` & `execute()` methods
+#### `CallableStatement`
+Procédures stockées dans le SGBD
+- `set()` & `get()` & `registerOutParameter()` & `execute()`
