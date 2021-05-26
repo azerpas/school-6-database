@@ -4,6 +4,7 @@ Interactions logiques entre les données
 ### Cardinalités
 ![mcd](https://user-images.githubusercontent.com/19282069/119234202-efbc9200-bb2c-11eb-8518-32212dbb9231.png)
 ## MLD (Modèle Logique des données) | Relationnel
+![mld](https://user-images.githubusercontent.com/19282069/119692585-cf057c80-be4b-11eb-8586-033290fcca86.png)
 #### Rappels 
 ![tuples-attribut-relation](https://user-images.githubusercontent.com/19282069/119253758-faba0580-bbb2-11eb-8deb-43753d213324.png)
 ### Cardinalités
