@@ -5,3 +5,4 @@
 TP2/Vars.java
 *.class
 *.jar
+!Cours.pdf
